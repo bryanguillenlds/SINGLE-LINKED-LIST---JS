@@ -202,4 +202,40 @@ class SinglyLinkedList {
 
     return removed; //return the value
   }
+
+  //method to reverse a linked list
+  reverse() {
+    let node = this.head; //store a reference to current/old head
+    this.head = this.tail; //make head be new tail
+    this.tail = node; //make tail be head
+    let next = null; //to eventually store the next prop while iterating
+    let prev = null; //to eventually store the prev prop while iterating
+
+    //loop through list
+    for (let i = 0; i < this.length; i++) {
+      //store the next node of the current node
+      next = node.next;
+      //make current node point to previous node
+      node.next = prev;
+
+      //move both prev and next one over
+      prev = node; //now previous is the current node
+      node = next; //and we move over the current node to the next
+    }
+
+    return this;
+  }
+
+  //method to print/log a list
+  print() {
+    let arr = [];
+    let current = this.head;
+
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+
+    console.log(arr);
+  }
 }
